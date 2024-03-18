@@ -1,19 +1,43 @@
 {
   "name": "nodejs-tutor",
   "version": "1.0.0",
-  "description": "Nodejs tutorial",
+  "description": "backend nodejs",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon --exec babel-node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bobeoahihi/demo-fullstack-tutor.git"
   },
   "keywords": [
     "nodejs",
-    "react"
+    "fullstack",
+    "reactjs"
   ],
-  "author": "Bobeo",
+  "author": "Chinh",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bobeoahihi/demo-fullstack-tutor/issues"
+  },
+  "homepage": "https://github.com/Bobeoahihi/demo-fullstack-tutor#readme",
   "dependencies": {
-    "express": "4.18.2"
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "nodemon": "^3.0.3",
+    "sequelize-cli": "^6.2.0"
   }
 }

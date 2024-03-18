@@ -1,0 +1,17 @@
+Lệnh nodejs:
+
+tạo package.json: npm init
+tải thư viện: npm install [libary]
+
+Can on lai:
+
+Lenh SQL querry.
+bootstrap 4
+css: flex(layout create),...
+
+
+Học cấu trúc redux
+
+
+Loi can fix:
+mat khau nhap vao can dc ma hoa tu phia client de ko bi hacker bat goi tin
