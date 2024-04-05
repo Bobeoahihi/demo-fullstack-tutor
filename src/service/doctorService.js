@@ -77,7 +77,7 @@ let saveDetailInforDoctor = (inputData) => {
             } else {
 
                 //upsert to Markdown table
-                if (!inputData.doctorId === 'CREATE') {
+                if (inputData.action === 'CREATE') {
                     await db.Markdown.create({
                         contentHTML: inputData.contentHTML,
                         contentMarkdown: inputData.contentMarkdown,
