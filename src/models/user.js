@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { USE } = require('sequelize/lib/index-hints');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -16,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(models.Markdown, { foreignKey: 'doctorId' })
       User.hasOne(models.Doctor_infor, { foreignKey: 'doctorId' })
       User.hasMany(models.Schedule, { foreignKey: 'doctorId', as: 'doctorData' })
-
+      User.hasMany(models.Booking, { foreignKey: 'patientId', as: 'patientData' })
     }
   };
   User.init({

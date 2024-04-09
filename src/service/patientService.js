@@ -11,7 +11,9 @@ let getProfileDoctorById = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
             if (!data.email || !data.doctorId || !data.timeType || !data.date
-                || !data.fullName || !data.timeString) {
+                || !data.fullName || !data.timeString || !data.selectedGender
+                || !data.address
+            ) {
                 resolve({
                     errCode: 1,
                     errMessage: 'Missing parameter'
@@ -31,7 +33,11 @@ let getProfileDoctorById = (data) => {
                     where: { email: data.email },
                     defaults: {
                         email: data.email,
-                        roleId: 'R3'
+                        roleId: 'R3',
+                        address: data.address,
+                        gender: data.selectedGender,
+                        firstName: data.fullName,
+                        phonenumber: data.phoneNumber
                     },
                 })
                 // create a booking record
