@@ -4,7 +4,7 @@ let createClinic = (data) => {
     return new Promise(async (resolve, reject) => {
 
         try {
-            if (!data.imageBase64 || !data.descriptionHTML || !data.descriptionMarkdown
+            if (!data.descriptionHTML || !data.descriptionMarkdown
                 || !data.name || !data.address) {
                 resolve({
                     errCode: 1,

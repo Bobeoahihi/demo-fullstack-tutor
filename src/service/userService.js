@@ -12,12 +12,18 @@ let handleUserLogin = (email, password) => {
             if (isExit) {
                 //user already exits
                 let user = await db.User.findOne({
-                    where: { email: email },
+                    where: { email: email, },
                     attributes: ['id', 'email', 'roleId', 'password', 'firstName', 'lastName'],
                     raw: true,
 
                 })
+
                 if (user) {
+                    if (user.roleId === 'R3') {
+                        userData.errCode = 2;
+                        userData.errMessage = "User's not found"
+                        resolve(userData)
+                    }
                     let check = await bcrypt.compareSync(password, user.password);
                     if (check) {
                         userData.errCode = 0;

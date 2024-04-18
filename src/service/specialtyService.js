@@ -101,8 +101,83 @@ let getDetailSpecialtyById = (inputId, location) => {
         }
     })
 }
+let handleEditSpecialty = (data) => {
+    return new Promise(async (resolve, reject) => {
+
+        try {
+            if (!data.id || !data.descriptionHTML || !data.descriptionMarkdown || !data.name) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing parameter haah'
+                })
+            } else {
+                let specialty = await db.Specialty.findOne({
+                    where: { id: data.id },
+                    raw: false,
+                })
+                if (specialty) {
+                    specialty.name = data.name;
+                    specialty.descriptionHTML = data.descriptionHTML;
+                    specialty.descriptionMarkdown = data.descriptionMarkdown;
+                    if (data.imageBase64) {
+                        specialty.imageBase64 = data.imageBase64;
+                    }
+                    specialty.save()
+                    resolve({
+                        errCode: 0,
+                        errMessage: 'OK'
+                    })
+                } else {
+                    resolve({
+                        errCode: 2,
+                        errMessage: 'Specialty is not found!'
+                    })
+                }
+
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+let handleDeleteSpecialty = (inputId) => {
+    return new Promise(async (resolve, reject) => {
+
+        try {
+            if (!inputId) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing parameter'
+                })
+            } else {
+                let specialty = await db.Specialty.findOne({
+                    where: { id: inputId },
+                })
+                if (specialty) {
+                    await db.Specialty.destroy({
+                        where: { id: inputId }
+                    })
+                    resolve({
+                        errCode: 0,
+                        errMessage: 'OK'
+                    })
+                } else {
+                    resolve({
+                        errCode: 2,
+                        errMessage: 'Specialty is not found!'
+                    })
+                }
+
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     createSpecialty: createSpecialty,
     getAllSpecialty: getAllSpecialty,
     getDetailSpecialtyById, getDetailSpecialtyById,
+    handleEditSpecialty: handleEditSpecialty,
+    handleDeleteSpecialty: handleDeleteSpecialty,
 }
